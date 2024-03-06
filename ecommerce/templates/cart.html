@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %} Products {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="py-3 py-md-5 bg-light">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="shopping-cart">
+
+          {% if cart_items %}
+
+          <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
+            <div class="row">
+              <div class="col-md-6">
+                <h4>Product</h4>
+              </div>
+              <div class="col-md-2">
+                <h4>Price</h4>
+              </div>
+              <div class="col-md-2">
+                <h4>Quantity</h4>
+              </div>
+              <div class="col-md-2">
+                <h4>Remove</h4>
+              </div>
+            </div>
+          </div>
+
+          <div class="cart-item">
+
+            {% for item in cart_items %}
+
+            <div class="row product_data" style="margin-top: 20px;">
+
+              <div class="col-md-6 my-auto">
+                <a href="">
+                  <label class="product-name">
+                    <img src="{{item.product.image.url}}" style="width: 60px; height: 60px" alt="">
+                    {{ item.product.name }} &nbsp;{{ item.product.description }}
+                  </label>
+                </a>
+              </div>
+              <div class="col-md-2 my-auto">
+                <label class="price">₹ {{ item.product.price | stringformat:'d' }}</label>
+              </div>
+              <div class="col-md-2 col-7 my-auto">
+
+                <input type="hidden" class="prod_id" value="{{item.product_id }}">
+
+                {% csrf_token %}
+                {% if item.product.stock >= item.quantity %}
+
+                <div class="col-md-3 my-auto">
+                  <div class="input-group text-center mb-3" style="width: 130px;">
+                    <button class="input-group-text changeQuantity decrement-btn">-</button>
+                    <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ item.quantity }}" />
+                    <button class="input-group-text changeQuantity increment-btn">+</button>
+                  </div>
+                </div>
+
+                {% else %}
+                <h6>Out of stock</h6>
+                {% endif %}
+              </div>
+
+              <div class="col-md-2 col-5 my-auto">
+                <div class="remove">
+                  <a href="{% url 'remove_from_cart' cart_item_id=item.id %}" class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash"></i> Remove
+                  </a>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+
+            <div class="container-fluid" style="margin-top: 50px;">
+              <section class="shadow-4 p-4 rounded-5 mb-4">
+                <h5 class="mb-5">Payment Information</h5>
+
+                <div class="d-flex justify-content-between mb-3">
+                  <span>Value of Product(s)</span>
+                  <span>₹ {{ total_price | stringformat:'d' }}</span>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <span>Shipping </span>
+                  <span>Free</span>
+                </div>
+                <hr class="my-4" />
+                <div class="d-flex justify-content-between fw-bold mb-5">
+                  <span>Final Payment</span>
+                  <span>₹ {{ total_price | stringformat:'d' }}</span>
+                </div>
+
+               <a href="{% url 'checkout' %}"><button type="button" class="btn btn-primary btn-rounded"
+                  style="width: 250px; height: 50px; margin-left: 500px; background-color: #ab95db; color: #ec0e89; font-weight: bolder;">
+                  PLACE ORDER
+                </button>
+              </a>
+              </section>
+
+            </div>
+          </div>
+
+          {% else %}
+          <img src="{% static 'images/empty-cart.jpeg' %}" alt="" style="margin-left: 380px; width: 550px;">
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %} Products {% endblock %}
+
+
+{% block content %}
+{% load static %}
+
+<!-- content -->
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-8 order-md-2 col-lg-8">
+            <div class="container-fluid">
+                <div class="row product_data" style="margin: 60px;">
+
+                    <aside class="col-lg-6">
+                        <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                            <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image" href="#">
+                                <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
+                                    src="{% if product.image %}{{product.image.url}}{% else %}{% static 'images/default_img.png' %}{% endif %}">
+                            </a>
+                        </div>
+
+                    </aside>
+                    <main class="col-lg-6">
+                        <div class="ps-lg-3">
+                            <h4 class="title text-dark">
+                                {{ product.name }}
+                            </h4>
+                            <div class="d-flex flex-row my-3">
+                                <div class="text-warning mb-1 me-2">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span class="ms-1">
+                                        4.5
+                                    </span>
+                                </div>
+                                <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154
+                                    orders</span>
+                                <span class="text-success ms-2">In stock</span>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="h5">₹ {{ product.price }}</span>
+                            </div>
+
+                            <h4 class="title text-dark">
+                                {{ product.description }}
+                            </h4>
+                            <br>
+
+                            <div class="row">
+                                                                
+                                <dt class="col-3">Brand</dt>
+                                <dd class="col-9">{{ product.brand }}</dd>
+
+                                <dt class="col-3">Color</dt>
+                                <dd class="col-9">{{ product.color }}</dd>
+
+                                <dt class="col-3">Type</dt>
+                                <dd class="col-9">Regular</dd>
+
+                                <dt class="col-3">Material</dt>
+                                <dd class="col-9">Cotton</dd>
+
+                            </div>
+
+                            <hr />
+                            {% csrf_token %}
+                            <input type="hidden" class="prod_id" value="{{product.id }}">
+
+                            <!-- <a href="#" class="btn btn-warning shadow-0"> Buy now </a> -->
+                            <a href="{% url 'add_to_cart' id=product.id slug=product.slug %}" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add
+                                to cart
+                            </a>
+                            <button class="btn btn-light addToWishlist border border-secondary py-2 icon-hover px-3">
+                            
+                                {% if wishlist %}
+                                    <i class="me-1 fa fa-heart fa-lg" style='color: red'></i>
+                                    {% else %}
+                                    <i class="me-1 fa fa-heart fa-lg"></i>Add to wishlist
+                                {% endif %}
+
+                            </button>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

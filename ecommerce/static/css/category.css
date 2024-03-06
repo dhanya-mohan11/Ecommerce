@@ -1,0 +1,98 @@
+/* Brands  */
+.brands{
+    margin-top: 50px;
+    margin-left: 280px;
+    margin-bottom: 30px;
+}
+
+/* Category  */
+.content h1 span{
+    color: #ea5c8a;
+	padding-left:380px;
+}
+
+.sidebar-filter{
+	background-color: #eee;
+
+}
+
+.category-products {
+	margin-bottom: 35px;
+}
+
+.text-category{
+	color: #ec0e89;
+	font-weight: bold;
+	font-size: 22px;
+	/* text-transform: uppercase; */
+}
+
+.category-list{
+	padding-left: 15px;
+	color: #ec0e89;
+	font-size: 20px;
+}
+
+.categories{
+	padding-left: 15px;
+}
+
+.categories span{
+	color: #ea5c8a;
+}
+
+.categories ul li{
+	padding-bottom: 10px;
+}
+
+.categories ul li a{
+	color: #ec0e89;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.categories h6 a{
+	text-decoration: none;
+	padding-left: 8px;
+	color: #ec0e89;
+	font-size: 20px;
+}
+
+.card-img-top{
+	padding-top: 10px;
+	/* border-radius: 50px; */
+}
+
+
+.category-card{
+    border: 1px #eee;
+    /* box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%); */
+	margin-left: 15px;
+	padding-top: 40px;
+	width: 320px;
+	height: 430px;
+}
+
+.card-body h4{
+	/* padding-bottom: 10px; */
+	text-align: center;
+}
+.card-body a{
+    text-decoration: none;
+	color: #ec0e89;
+}
+.card-body a:hover{
+	color: #ab95db;
+}
+
+.card-body h6{
+	color: #ec0e89;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+.card-body h5{
+	color: #ec0e89;
+	text-align: center;
+	font-size: 15px;
+}

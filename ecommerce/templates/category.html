@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %} Category {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 order-md-2 col-lg-9">
+            <div class="container-fluid">
+
+                <div class="content" style="padding-top: 50px; padding-bottom: 20px;">
+                    <h1>
+                        <!-- <span>CLOTHING CATEGORIES</span> -->
+                    </h1>
+                </div>
+                <div>
+                    <!-- <img src="{% static '/images/banner/girl.jpg' %}" class="d-block w-100" alt="..."> -->
+                </div>
+
+                <div class="row" style="padding-left: 300px;">
+
+                    <!-----------------------
+                         CATEGORY LIST 
+                    ------------------------->
+
+                    {% for i in categories %}
+
+                    <div class="col-6 col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100" style="margin-left: -25px;margin-right: -25px">
+                            <div class="card-img-top">
+                                <a href="{% url 'products_list_by_category' category_slug=i.slug %}">
+                                    <img src="{% if i.image %}{{i.image.url}}{% else %}{% static 'images/default_img.png' %}{% endif %}" class="img-fluid mx-auto d-block" alt="" style="width:200px; height: 250px;">
+                                </a>
+                            </div>
+                            <div class="card-body text-center">
+                                <h4>
+                                    <a href="{% url 'products_list_by_category' category_slug=i.slug %}"
+                                        class=" font-weight-bold text-uppercase small">
+                                        {{ i.name }}</a>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-----------------------
+            CATEGORY SIDE BAR 
+        ------------------------->
+        {% include 'category-sidebar.html' %}
+
+
+    </div>
+</div>
+
+
+{% endblock %}

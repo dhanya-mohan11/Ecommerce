@@ -1,0 +1,42 @@
+<div class="col-md-2 sidebar-filter">
+
+    <div class="mt-0 mb-5 text-uppercase" style="padding-top: 50px; padding-left: 10px;">
+        <span class="text-category">Category</span></div>
+
+    <div class="mt-2 mb-2 pl-2">
+        <!-- <h6 class="mb-3 text-uppercase category-list">Girls</h6> -->
+        <div class="categories">
+            <ul class="fa-ul">
+
+                {% for i in categories %}
+
+                <li><span class="fa-li"><i class="fa fa-minus"></i></span><a href="{% url 'products_list_by_category' category_slug=i.slug %}">{{ i.name }}</a></li>
+                <!-- <li><span class="fa-li"><i class="fa fa-minus"></i></span><a href="#">{{ i.name }}</a></li> -->
+                
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
+
+    
+    <!-----------------------
+             TOYS 
+    ------------------------->
+
+    <div class="mt-2 mb-2 pl-2">
+        <div class="categories">
+            <h6 class="mb-3 text-uppercase"><a href="#">Toys</a></h6>
+        </div>
+    </div>
+
+    <div class="divider mt-5 mb-5 border-bottom border-secondary"></div>
+
+
+    <div class="mt-2 mb-2 pl-2">
+        <img src="/static/images/banner/shipping.jpg" alt="">
+    </div>
+</div>
+

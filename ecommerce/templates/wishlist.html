@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %} Products {% endblock %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="py-3 py-md-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="shopping-cart">
+
+                    {% if wishlist %}
+
+                    <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Product</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Price</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Add to cart</h4>
+                            </div>
+                            <div class="col-md-2">
+                                <h4>Remove</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+
+                        {% for item in wishlist %}
+
+                        <div class="row product_data" style="margin-top: 20px;">
+
+                            <div class="col-md-6 my-auto">
+                                <a href="">
+                                    <label class="product-name">
+                                        <img src="{{item.product.image.url}}" style="width: 60px; height: 60px" alt="">
+                                        {{ item.product.name }} &nbsp;{{ item.product.description }}
+                                    </label>
+                                </a>
+                            </div>
+                            <div class="col-md-2 my-auto">
+                                <label class="price">₹ {{ item.product.price | stringformat:'d' }}</label>
+                            </div>
+
+                            <div class="col-md-2 col-5 my-auto">
+                                <div class="add">
+                                    <a href="{% url 'add_to_cart' id=item.product_id slug=item.product.slug %}"
+                                        class="btn btn-primary btn-sm" style="background-color: #ab95db;">
+                                        <i class="fa fa-cart-plus"></i> &nbsp; Add to cart
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2 col-5 my-auto">
+                                <div class="remove">
+                                    <a href="{% url 'remove_from_wishlist' wishlist_id=item.id %}"
+                                        class="btn btn-danger btn-sm">
+                                        <i class="fa fa-trash"></i> Remove
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+                    {% else %}
+                    <img src="{% static 'images/wish-list.png' %}" alt="" style="margin-left: 380px; width: 550px;">
+                    
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
